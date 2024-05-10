@@ -1,22 +1,45 @@
 import random
 import time
-
+import threading
 import keyboard
 import pyautogui
 import win32api
 import win32con
 
 
-def click():
-    win32api.mouse_event(win32con.MOUSEEVENTF_LEFTDOWN, 0, 0)
-    time.sleep(1 / (cps + random.randint(0, cps_randomization)))
-    win32api.mouse_event(win32con.MOUSEEVENTF_LEFTUP, 0, 0)
+def click(cps, cps_randomization):
+    while True:
+        if mouse_click:
+            win32api.mouse_event(win32con.MOUSEEVENTF_LEFTDOWN, 0, 0)
+            time.sleep(1 / (cps + random.randint(0, cps_randomization)))
+            win32api.mouse_event(win32con.MOUSEEVENTF_LEFTUP, 0, 0)
 
 
-def jitter_move():
-    dx = random.randint(-2, 2)
-    dy = random.randint(-2, 2)
-    win32api.mouse_event(win32con.MOUSEEVENTF_MOVE, dx, dy)
+def detect_booster(game_map_pos):
+    global running
+    while running:
+        try:
+            if game_map_pos is not None:
+                booster_pos = pyautogui.locateCenterOnScreen('assets/2x_booster.png', region=game_map_pos,
+                                                             grayscale=True, confidence=0.8)
+                if booster_pos is not None:
+                    win32api.SetCursorPos(booster_pos)
+        except pyautogui.ImageNotFoundException:
+            continue
+
+
+def verify_game_map():
+    global game_map_pos
+    while True:
+        try:
+            if game_map_pos is None:
+                game_map_pos = pyautogui.locateOnScreen('assets/game_map.png', grayscale=True, confidence=0.75)
+            else:
+                print("Game map position found.")
+            time.sleep(2)
+        except Exception as e:
+            print("An error occurred while verifying game map:", e)
+            time.sleep(2)
 
 
 def on_press(key):
@@ -30,26 +53,26 @@ def on_press(key):
 
 key_stop = 'o'
 key_LMB = 'p'
-
 cps = 20
 cps_randomization = 4
+mouse_click = False
 
 keyboard.on_press_key(key_stop, on_press)
 keyboard.on_press_key(key_LMB, on_press)
-game_map_pos = pyautogui.locateOnScreen('assets/game_map.png', grayscale=True, confidence=0.75)
-
+game_map_pos = None  # Start with None to trigger the initial verification
 running = True
-mouse_click = False
-while running:
-    if mouse_click:
-        click()
-        jitter_move()
 
-        try:
-            if game_map_pos is not None:
-                booster_pos = pyautogui.locateCenterOnScreen('assets/2x_booster.png', region=game_map_pos,
-                                                             grayscale=True, confidence=0.8)
-                if booster_pos is not None:
-                    win32api.SetCursorPos(booster_pos)
-        except pyautogui.ImageNotFoundException:
-            continue
+# Create threads
+click_thread = threading.Thread(target=click, args=(cps, cps_randomization))
+booster_thread = threading.Thread(target=detect_booster, args=(game_map_pos,))
+verify_game_map_thread = threading.Thread(target=verify_game_map)
+
+# Start threads
+click_thread.start()
+booster_thread.start()
+verify_game_map_thread.start()
+
+# Join threads
+click_thread.join()
+booster_thread.join()
+verify_game_map_thread.join()
