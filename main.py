@@ -3,18 +3,18 @@ import threading
 import keyboard
 
 from clicking import click
-from constants import key_stop, key_LMB, clicks_per_second, cps_randomization
+from constants import constants
 from detection import detect_booster, detect_money_bag
 from utils import is_earn_menu_active, on_press
 
 
 def main():
     """Main function to start and join threads."""
-    keyboard.on_press_key(key_stop, on_press)
-    keyboard.on_press_key(key_LMB, on_press)
+    keyboard.on_press_key(constants.key_stop, on_press)
+    keyboard.on_press_key(constants.key_LMB, on_press)
 
     # Create threads
-    click_thread = threading.Thread(target=click, args=(clicks_per_second, cps_randomization))
+    click_thread = threading.Thread(target=click, args=(constants.clicks_per_second, constants.cps_randomization))
     booster_thread = threading.Thread(target=detect_booster)
     money_bag_thread = threading.Thread(target=detect_money_bag)
     is_earn_menu_active_thread = threading.Thread(target=is_earn_menu_active)
