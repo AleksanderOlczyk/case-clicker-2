@@ -26,9 +26,20 @@ def detect_booster():
     global running
     while running:
         try:
-            booster_pos = pyautogui.locateCenterOnScreen('assets/2x_booster.png', grayscale=True, confidence=0.8)
+            booster_pos = pyautogui.locateCenterOnScreen('assets/boosters/2x_booster.png', grayscale=True, confidence=0.8)
             if booster_pos is not None:
                 win32api.SetCursorPos(booster_pos)
+        except pyautogui.ImageNotFoundException:
+            continue
+
+
+def detect_money_bag():
+    global running
+    while running:
+        try:
+            money_bag_pos = pyautogui.locateCenterOnScreen('assets/boosters/money_bag.png', grayscale=True, confidence=0.8)
+            if money_bag_pos is not None:
+                win32api.SetCursorPos(money_bag_pos)
         except pyautogui.ImageNotFoundException:
             continue
 
@@ -56,11 +67,14 @@ running = True
 # Create threads
 click_thread = threading.Thread(target=click, args=(cps, cps_randomization))
 booster_thread = threading.Thread(target=detect_booster)
+money_bag_thread = threading.Thread(target=detect_money_bag)
 
 # Start threads
 click_thread.start()
 booster_thread.start()
+money_bag_thread.start()
 
 # Join threads
 click_thread.join()
 booster_thread.join()
+money_bag_thread.join()
