@@ -13,6 +13,13 @@ def click(cps, cps_randomization):
             win32api.mouse_event(win32con.MOUSEEVENTF_LEFTDOWN, 0, 0)
             time.sleep(1 / (cps + random.randint(0, cps_randomization)))
             win32api.mouse_event(win32con.MOUSEEVENTF_LEFTUP, 0, 0)
+            jitter_move()
+
+
+def jitter_move():
+    dx = random.randint(-2, 2)
+    dy = random.randint(-2, 2)
+    win32api.mouse_event(win32con.MOUSEEVENTF_MOVE, dx, dy)
 
 
 def detect_booster(game_map_pos):
@@ -30,13 +37,14 @@ def detect_booster(game_map_pos):
 
 def verify_game_map():
     global game_map_pos
-    while True:
+    while mouse_click:
         try:
             if game_map_pos is None:
                 game_map_pos = pyautogui.locateOnScreen('assets/game_map.png', grayscale=True, confidence=0.75)
+                time.sleep(2)
             else:
                 print("Game map position found.")
-            time.sleep(2)
+                time.sleep(30)
         except Exception as e:
             print("An error occurred while verifying game map:", e)
             time.sleep(2)
@@ -59,7 +67,7 @@ mouse_click = False
 
 keyboard.on_press_key(key_stop, on_press)
 keyboard.on_press_key(key_LMB, on_press)
-game_map_pos = None  # Start with None to trigger the initial verification
+game_map_pos = None
 running = True
 
 # Create threads
@@ -74,5 +82,5 @@ verify_game_map_thread.start()
 
 # Join threads
 click_thread.join()
-booster_thread.join()
 verify_game_map_thread.join()
+booster_thread.join()
