@@ -16,7 +16,7 @@ def detect_2x_booster():
                                                                  confidence=0.8)
                     if booster_pos is not None:
                         time.sleep(random.uniform(0.1, 0.5))
-                        SmoothCursor.smooth_move_to(booster_pos[0], booster_pos[1], duration=random.uniform(0.1, 0.3))
+                        SmoothCursor.smooth_move_to(booster_pos[0], booster_pos[1])
                         reset_cursor()
                 except pyautogui.ImageNotFoundException:
                     continue
@@ -31,8 +31,8 @@ def detect_4x_booster():
                     booster_pos = pyautogui.locateCenterOnScreen('assets/boosters/4x_booster.png', grayscale=True,
                                                                  confidence=0.8)
                     if booster_pos is not None:
-                        time.sleep(random.uniform(0.1, 0.5))  # Random delay before moving the cursor
-                        SmoothCursor.smooth_move_to(booster_pos[0], booster_pos[1], duration=random.uniform(0.1, 0.3))
+                        time.sleep(random.uniform(0.1, 0.5))
+                        SmoothCursor.smooth_move_to(booster_pos[0], booster_pos[1])
                         reset_cursor()
                 except pyautogui.ImageNotFoundException:
                     continue
@@ -47,8 +47,8 @@ def detect_7x_booster():
                     booster_pos = pyautogui.locateCenterOnScreen('assets/boosters/7x_booster.png', grayscale=True,
                                                                  confidence=0.8)
                     if booster_pos is not None:
-                        time.sleep(random.uniform(0.1, 0.5))  # Random delay before moving the cursor
-                        SmoothCursor.smooth_move_to(booster_pos[0], booster_pos[1], duration=random.uniform(0.1, 0.3))
+                        time.sleep(random.uniform(0.1, 0.5))
+                        SmoothCursor.smooth_move_to(booster_pos[0], booster_pos[1])
                         reset_cursor()
                 except pyautogui.ImageNotFoundException:
                     continue
@@ -63,9 +63,8 @@ def detect_money_bag():
                     money_bag_pos = pyautogui.locateCenterOnScreen('assets/boosters/money_bag.png', grayscale=True,
                                                                    confidence=0.8)
                     if money_bag_pos is not None:
-                        time.sleep(random.uniform(0.1, 0.5))  # Random delay before moving the cursor
-                        SmoothCursor.smooth_move_to(money_bag_pos[0], money_bag_pos[1],
-                                                    duration=random.uniform(0.1, 0.3))
+                        time.sleep(random.uniform(0.1, 0.5))
+                        SmoothCursor.smooth_move_to(money_bag_pos[0], money_bag_pos[1])
                         reset_cursor()
                 except pyautogui.ImageNotFoundException:
                     continue
@@ -78,8 +77,7 @@ def reset_cursor():
         if center_pos is not None:
             offset_x = random.randint(-200, 200)
             offset_y = random.randint(-200, 200)
-            time.sleep(random.uniform(0.1, 0.5))  # Random delay before moving the cursor
-            SmoothCursor.smooth_move_to(center_pos[0] + offset_x, center_pos[1] + offset_y,
-                                        duration=random.uniform(0.1, 0.3))
+            time.sleep(random.uniform(0.1, 0.5))
+            SmoothCursor.smooth_move_to(center_pos[0] + offset_x, center_pos[1] + offset_y)
     except pyautogui.ImageNotFoundException:
         pass
