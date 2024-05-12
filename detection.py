@@ -6,68 +6,47 @@ from SmoothCursor import SmoothCursor
 from constants import constants
 
 
-def detect_2x_booster():
+def detect_booster(booster_image):
     """Detect booster if mouse_click and earn_menu_active are True."""
+    booster_detected = False
+    booster_previously_detected = False
+    last_detection_time = 0
+    detection_delay = 1
+
     while True:
         while constants.running:
             if constants.mouse_click and constants.earn_menu_active:
                 try:
-                    booster_pos = pyautogui.locateCenterOnScreen('assets/boosters/2x_booster.png', grayscale=True,
-                                                                 confidence=0.8)
+                    booster_pos = pyautogui.locateCenterOnScreen(booster_image, grayscale=True, confidence=0.8)
                     if booster_pos is not None:
-                        time.sleep(random.uniform(0.1, 0.5))
+                        booster_detected = True
+                        last_detection_time = time.time()
+                        time.sleep(random.uniform(0.1, 0.3))
                         SmoothCursor.smooth_move_to(booster_pos[0], booster_pos[1])
-                        reset_cursor()
+                    else:
+                        booster_detected = False
                 except pyautogui.ImageNotFoundException:
-                    continue
+                    booster_detected = False
+
+            if booster_previously_detected and not booster_detected and time.time() - last_detection_time > detection_delay:
+                reset_cursor()
+            booster_previously_detected = booster_detected
+
+
+def detect_2x_booster():
+    return detect_booster('assets/boosters/2x_booster.png')
 
 
 def detect_4x_booster():
-    """Detect 4x booster if mouse_click and earn_menu_active are True."""
-    while True:
-        while constants.running:
-            if constants.mouse_click and constants.earn_menu_active:
-                try:
-                    booster_pos = pyautogui.locateCenterOnScreen('assets/boosters/4x_booster.png', grayscale=True,
-                                                                 confidence=0.8)
-                    if booster_pos is not None:
-                        time.sleep(random.uniform(0.1, 0.5))
-                        SmoothCursor.smooth_move_to(booster_pos[0], booster_pos[1])
-                        reset_cursor()
-                except pyautogui.ImageNotFoundException:
-                    continue
+    return detect_booster('assets/boosters/4x_booster.png')
 
 
 def detect_7x_booster():
-    """Detect 7x booster if mouse_click and earn_menu_active are True."""
-    while True:
-        while constants.running:
-            if constants.mouse_click and constants.earn_menu_active:
-                try:
-                    booster_pos = pyautogui.locateCenterOnScreen('assets/boosters/7x_booster.png', grayscale=True,
-                                                                 confidence=0.8)
-                    if booster_pos is not None:
-                        time.sleep(random.uniform(0.1, 0.5))
-                        SmoothCursor.smooth_move_to(booster_pos[0], booster_pos[1])
-                        reset_cursor()
-                except pyautogui.ImageNotFoundException:
-                    continue
+    return detect_booster('assets/boosters/7x_booster.png')
 
 
 def detect_money_bag():
-    """Detect money bag if mouse_click and earn_menu_active are True."""
-    while True:
-        while constants.running:
-            if constants.mouse_click and constants.earn_menu_active:
-                try:
-                    money_bag_pos = pyautogui.locateCenterOnScreen('assets/boosters/money_bag.png', grayscale=True,
-                                                                   confidence=0.8)
-                    if money_bag_pos is not None:
-                        time.sleep(random.uniform(0.1, 0.5))
-                        SmoothCursor.smooth_move_to(money_bag_pos[0], money_bag_pos[1])
-                        reset_cursor()
-                except pyautogui.ImageNotFoundException:
-                    continue
+    return detect_booster('assets/boosters/money_bag.png')
 
 
 def reset_cursor():
