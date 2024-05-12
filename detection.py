@@ -1,5 +1,7 @@
+import time
 import pyautogui
 import win32api
+import random
 
 from constants import constants
 
@@ -14,6 +16,8 @@ def detect_2x_booster():
                                                                  confidence=0.8)
                     if booster_pos is not None:
                         win32api.SetCursorPos(booster_pos)
+                        time.sleep(0.2 + (random.randint(2, 5) / 10))
+                        reset_cursor()
                 except pyautogui.ImageNotFoundException:
                     continue
 
@@ -28,6 +32,8 @@ def detect_4x_booster():
                                                                  confidence=0.8)
                     if booster_pos is not None:
                         win32api.SetCursorPos(booster_pos)
+                        time.sleep(0.2 + (random.randint(3, 5) / 100))
+                        reset_cursor()
                 except pyautogui.ImageNotFoundException:
                     continue
 
@@ -42,6 +48,8 @@ def detect_7x_booster():
                                                                  confidence=0.8)
                     if booster_pos is not None:
                         win32api.SetCursorPos(booster_pos)
+                        time.sleep(0.2 + (random.randint(3, 5) / 100))
+                        reset_cursor()
                 except pyautogui.ImageNotFoundException:
                     continue
 
@@ -56,5 +64,19 @@ def detect_money_bag():
                                                                    confidence=0.8)
                     if money_bag_pos is not None:
                         win32api.SetCursorPos(money_bag_pos)
+                        time.sleep(0.2 + (random.randint(3, 5) / 100))
+                        reset_cursor()
                 except pyautogui.ImageNotFoundException:
                     continue
+
+
+def reset_cursor():
+    """Reset cursor to the center of the dollar_sign.png image with a random offset of 200 pixels."""
+    try:
+        center_pos = pyautogui.locateCenterOnScreen('assets/menu/dollar_sign.png', grayscale=True, confidence=0.8)
+        if center_pos is not None:
+            offset_x = random.randint(-200, 200)
+            offset_y = random.randint(-200, 200)
+            win32api.SetCursorPos((center_pos[0] + offset_x, center_pos[1] + offset_y))
+    except pyautogui.ImageNotFoundException:
+        pass
