@@ -24,7 +24,7 @@ class SmoothCursor:
         end_time = start_time + constants.move_duration
         while time.time() < end_time:
             t = (time.time() - start_time) / constants.move_duration
-            x = SmoothCursor.cubic_interpolation(x1, x2, t)  # Use cubic interpolation
-            y = SmoothCursor.cubic_interpolation(y1, y2, t)  # Use cubic interpolation
+            x = SmoothCursor.cubic_interpolation(x1, x2, t)
+            y = SmoothCursor.cubic_interpolation(y1, y2, t)
             pyautogui.moveTo(x, y)
             time.sleep(0.01)

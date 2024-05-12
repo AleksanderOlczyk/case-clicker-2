@@ -12,6 +12,8 @@ def detect_booster(booster_image):
     booster_previously_detected = False
     last_detection_time = 0
     detection_delay = 1
+    moving_to_booster = False
+    booster_pos = None
 
     while True:
         while constants.running:
@@ -29,8 +31,14 @@ def detect_booster(booster_image):
                     booster_detected = False
 
             if booster_previously_detected and not booster_detected and time.time() - last_detection_time > detection_delay:
-                reset_cursor()
+                if not moving_to_booster:
+                    reset_cursor()
             booster_previously_detected = booster_detected
+
+            current_pos = pyautogui.position()
+            if booster_pos is not None and abs(current_pos[0] - booster_pos[0]) < 5 and abs(
+                    current_pos[1] - booster_pos[1]) < 5:
+                moving_to_booster = False
 
 
 def detect_2x_booster():
