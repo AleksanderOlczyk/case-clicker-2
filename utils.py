@@ -1,3 +1,4 @@
+import sys
 import time
 import pyautogui
 from constants import constants
@@ -13,6 +14,8 @@ def is_earn_menu_active():
             constants.earn_menu_active = False
 
         time.sleep(0.1)
+    else:
+        sys.exit(0)
 
 
 def on_press(key):

@@ -1,4 +1,5 @@
 import random
+import sys
 import time
 import pyautogui
 
@@ -39,6 +40,8 @@ def detect_booster(booster_image):
             if booster_pos is not None and abs(current_pos[0] - booster_pos[0]) < 5 and abs(
                     current_pos[1] - booster_pos[1]) < 5:
                 moving_to_booster = False
+        else:
+            sys.exit(0)
 
 
 def detect_2x_booster():
