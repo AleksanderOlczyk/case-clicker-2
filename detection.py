@@ -32,7 +32,7 @@ def detect_booster(booster_image):
                     booster_detected = False
 
             if booster_previously_detected and not booster_detected and time.time() - last_detection_time > detection_delay:
-                if not moving_to_booster:
+                if not moving_to_booster and constants.running:
                     reset_cursor()
             booster_previously_detected = booster_detected
 

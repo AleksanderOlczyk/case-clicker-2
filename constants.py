@@ -4,10 +4,12 @@ class Constants:
     key_LMB = 'p'
     clicks_per_second = 20
     cps_randomization = 4
-    move_duration = 0.5
+    # move_duration = 0.5
+    cursor_speed = 40
     mouse_click = False
     earn_menu_active = False
     running = True
+    jitter_move = True
 
 
 constants = Constants()
