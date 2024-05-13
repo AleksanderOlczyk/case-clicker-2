@@ -16,7 +16,7 @@ Projekt składa się z kilku plików:
 - `main.py`: Główny plik, który uruchamia wszystkie wątki.
 - `clicking.py`: Zawiera funkcje do symulacji kliknięć myszy i ruchów.
 - `detection.py`: Zawiera funkcje do wykrywania obiektów na ekranie.
-- `SmoothCursor.py`: Zawiera klasę `SmoothCursor`, która symuluje płynne ruchy myszy.
+- `smoothCursor.py`: Zawiera klasę `smoothCursor`, która symuluje płynne ruchy myszy.
 - `constants.py`: Zawiera globalne zmienne używane w całym projekcie.
 - `utils.py`: Zawiera pomocnicze funkcje, takie jak sprawdzanie, czy menu zarabiania jest aktywne.
 

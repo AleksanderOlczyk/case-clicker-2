@@ -3,7 +3,7 @@ import sys
 import time
 import pyautogui
 
-from SmoothCursor import SmoothCursor
+from smoothCursor import smoothCursor
 from constants import constants
 
 
@@ -25,7 +25,7 @@ def detect_booster(booster_image):
                         booster_detected = True
                         last_detection_time = time.time()
                         time.sleep(random.uniform(0.1, 0.3))
-                        SmoothCursor.smooth_move_to(booster_pos[0], booster_pos[1])
+                        smoothCursor.smooth_move_to(booster_pos[0], booster_pos[1])
                     else:
                         booster_detected = False
                 except pyautogui.ImageNotFoundException:
@@ -65,9 +65,11 @@ def reset_cursor():
     try:
         center_pos = pyautogui.locateCenterOnScreen('assets/menu/dollar_sign.png', grayscale=True, confidence=0.8)
         if center_pos is not None:
-            offset_x = random.randint(-200, 200)
-            offset_y = random.randint(-200, 200)
-            time.sleep(random.uniform(0.1, 0.5))
-            SmoothCursor.smooth_move_to(center_pos[0] + offset_x, center_pos[1] + offset_y)
+            current_pos = pyautogui.position()
+            if abs(current_pos[0] - center_pos[0]) > 250 or abs(current_pos[1] - center_pos[1]) > 250:
+                offset_x = random.randint(-200, 200)
+                offset_y = random.randint(-200, 200)
+                time.sleep(random.uniform(0.1, 0.5))
+                smoothCursor.smooth_move_to(center_pos[0] + offset_x, center_pos[1] + offset_y)
     except pyautogui.ImageNotFoundException:
         pass

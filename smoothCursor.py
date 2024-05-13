@@ -6,7 +6,7 @@ import pyautogui
 from constants import constants
 
 
-class SmoothCursor:
+class smoothCursor:
     move_lock = threading.Lock()
 
     @staticmethod
@@ -15,7 +15,7 @@ class SmoothCursor:
 
     @staticmethod
     def smooth_move_to(x2, y2):
-        with SmoothCursor.move_lock:
+        with smoothCursor.move_lock:
             constants.jitter_click = False
             x1, y1 = pyautogui.position()
             distance = ((x2 - x1) ** 2 + (y2 - y1) ** 2) ** 0.5
@@ -29,8 +29,8 @@ class SmoothCursor:
             humanization = 3
             while time.time() < end_time:
                 t = (time.time() - start_time) / optimal_duration
-                x = SmoothCursor.sinusoidal_interpolation(x1, x2, t) + random.uniform(-humanization, humanization)
-                y = SmoothCursor.sinusoidal_interpolation(y1, y2, t) + random.uniform(-humanization, humanization)
+                x = smoothCursor.sinusoidal_interpolation(x1, x2, t) + random.uniform(-humanization, humanization)
+                y = smoothCursor.sinusoidal_interpolation(y1, y2, t) + random.uniform(-humanization, humanization)
                 pyautogui.moveTo(x, y)
                 time.sleep(0.01)
             constants.jitter_click = True
