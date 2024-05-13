@@ -2,7 +2,6 @@ import random
 import threading
 import time
 import math
-import pyautogui
 from constants import constants
 from pynput.mouse import Controller
 
