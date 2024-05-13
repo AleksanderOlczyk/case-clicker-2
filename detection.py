@@ -3,7 +3,7 @@ import sys
 import time
 import pyautogui
 
-from smoothCursor import smoothCursor
+from SmoothCursor import SmoothCursor
 from constants import constants
 
 
@@ -25,7 +25,7 @@ def detect_booster(booster_image):
                         booster_detected = True
                         last_detection_time = time.time()
                         time.sleep(random.uniform(0.1, 0.3))
-                        smoothCursor.smooth_move_to(booster_pos[0], booster_pos[1])
+                        SmoothCursor.smooth_move_to(booster_pos[0], booster_pos[1])
                     else:
                         booster_detected = False
                 except pyautogui.ImageNotFoundException:
@@ -70,6 +70,6 @@ def reset_cursor():
                 offset_x = random.randint(-200, 200)
                 offset_y = random.randint(-200, 200)
                 time.sleep(random.uniform(0.1, 0.5))
-                smoothCursor.smooth_move_to(center_pos[0] + offset_x, center_pos[1] + offset_y)
+                SmoothCursor.smooth_move_to(center_pos[0] + offset_x, center_pos[1] + offset_y)
     except pyautogui.ImageNotFoundException:
         pass
