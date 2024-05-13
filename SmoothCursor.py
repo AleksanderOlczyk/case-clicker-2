@@ -1,3 +1,4 @@
+import random
 import threading
 import time
 import pyautogui
@@ -20,10 +21,12 @@ class SmoothCursor:
             optimal_duration = max(0.5, min(1, distance / constants.cursor_speed))
             start_time = time.time()
             end_time = start_time + optimal_duration
+
+            humanization = 3
             while time.time() < end_time:
                 t = (time.time() - start_time) / optimal_duration
-                x = SmoothCursor.linear_interpolation(x1, x2, t)
-                y = SmoothCursor.linear_interpolation(y1, y2, t)
+                x = SmoothCursor.linear_interpolation(x1, x2, t) + random.uniform(-humanization, humanization)
+                y = SmoothCursor.linear_interpolation(y1, y2, t) + random.uniform(-humanization, humanization)
                 pyautogui.moveTo(x, y)
                 time.sleep(0.01)
             constants.jitter_move = True
