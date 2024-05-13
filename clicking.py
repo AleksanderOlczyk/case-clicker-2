@@ -14,11 +14,11 @@ def click(clicks_per_second, cps_randomization):
             win32api.mouse_event(win32con.MOUSEEVENTF_LEFTDOWN, 0, 0)
             time.sleep(1 / (clicks_per_second + random.randint(0, cps_randomization)))
             win32api.mouse_event(win32con.MOUSEEVENTF_LEFTUP, 0, 0)
-            if constants.jitter_move:
-                jitter_move()
+            if constants.jitter_click:
+                jitter_click()
 
 
-def jitter_move():
+def jitter_click():
     """Simulate mouse movement."""
     dx = random.randint(-2, 2)
     dy = random.randint(-2, 2)

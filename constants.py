@@ -9,7 +9,7 @@ class Constants:
     mouse_click = False
     earn_menu_active = False
     running = True
-    jitter_move = True
+    jitter_click = True
 
 
 constants = Constants()
