@@ -1,0 +1,7 @@
+keyboard
+pyautogui
+pywin32
+pynput
+opencv-python
+customtkinter
+pillow
