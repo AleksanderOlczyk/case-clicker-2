@@ -20,8 +20,8 @@ def is_earn_menu_active():
 
 def on_press(key):
     """Handle key press events."""
-    if key.name == constants.key_stop:
+    if key.name == constants.quit_key:
         constants.running = not constants.running
-    elif key.name == constants.key_LMB:
+    elif key.name == constants.activation_key:
         constants.mouse_click = not constants.mouse_click
         print("Mouse click:", constants.mouse_click)

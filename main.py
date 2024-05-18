@@ -10,8 +10,8 @@ from utils import is_earn_menu_active, on_press
 
 def main():
     """Main function to start and join threads."""
-    keyboard.on_press_key(constants.key_stop, on_press)
-    keyboard.on_press_key(constants.key_LMB, on_press)
+    keyboard.on_press_key(constants.quit_key, on_press)
+    keyboard.on_press_key(constants.activation_key, on_press)
 
     # Create threads
     is_earn_menu_active_thread = threading.Thread(target=is_earn_menu_active)
