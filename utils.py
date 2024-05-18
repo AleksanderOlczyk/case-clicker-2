@@ -23,5 +23,13 @@ def on_press(key):
     if key.name == constants.quit_key:
         constants.running = not constants.running
     elif key.name == constants.activation_key:
-        constants.mouse_click = not constants.mouse_click
-        print("Mouse click:", constants.mouse_click)
+        if constants.activation_mode:  # hold mode
+            constants.mouse_click = True
+        else:  # toggle mode
+            constants.mouse_click = not constants.mouse_click
+
+
+def on_release(key):
+    """Handle key release events."""
+    if constants.activation_mode and key.name == constants.activation_key:  # hold mode
+        constants.mouse_click = False

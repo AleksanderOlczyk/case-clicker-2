@@ -88,7 +88,7 @@ change_quit_key = CTkButton(
 )
 change_quit_key.place(anchor='e', relx=0.98, rely=0.2)
 
-activation_mode_var = StringVar(value="hold")
+activation_mode_var = StringVar(value="hold" if constants.activation_mode else "toggle")
 activation_mode_label = CTkLabel(root, text="Activation Mode:")
 activation_mode_label.place(relx=0.04, rely=0.3, anchor='w')
 hold_radio = CTkRadioButton(
