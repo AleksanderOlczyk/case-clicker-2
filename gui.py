@@ -35,6 +35,16 @@ def update_cps(*args):
     print("CPS updated:", constants.clicks_per_second)
 
 
+def update_cps_randomize(*args):
+    constants.cps_randomize = cps_randomize_var.get()
+    print("CPS Randomize updated:", constants.cps_randomize)
+
+
+def update_jitter_click_movement(*args):
+    constants.jitter_click_movement = jitter_click_movement_var.get()
+    print("Jitter Click Movement updated:", constants.jitter_click_movement)
+
+
 def quit_application():
     constants.running = False
     root.destroy()
@@ -140,6 +150,29 @@ cps_slider.place(relx=0.15, rely=0.4, anchor='w')
 cps_display_label = CTkLabel(root, text=str(constants.clicks_per_second))
 cps_display_label.place(relx=0.65, rely=0.4, anchor='w')
 
+cps_randomize_var = BooleanVar(value=constants.cps_randomize)
+cps_randomize_var.trace("w", update_cps_randomize)
+cps_randomize_checkbox = CTkCheckBox(
+    root,
+    checkbox_width=20,
+    checkbox_height=20,
+    text="Randomize",
+    variable=cps_randomize_var,
+    command=update_cps_randomize
+)
+cps_randomize_checkbox.place(relx=0.2, rely=0.5, anchor='w')
+
+jitter_click_movement_var = BooleanVar(value=constants.jitter_click_movement)
+jitter_click_movement_var.trace("w", update_jitter_click_movement)
+jitter_click_movement_checkbox = CTkCheckBox(
+    root,
+    checkbox_width=20,
+    checkbox_height=20,
+    text="Jitter",
+    variable=jitter_click_movement_var,
+    command=update_jitter_click_movement
+)
+jitter_click_movement_checkbox.place(relx=0.48, rely=0.5, anchor='w')
 
 
 button_apply = CTkButton(
