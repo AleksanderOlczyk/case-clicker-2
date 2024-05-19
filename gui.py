@@ -29,6 +29,12 @@ def change_key():
     keyboard.on_press(on_key_press)
 
 
+def update_cps(*args):
+    constants.clicks_per_second = cps_var.get()
+    cps_display_label.configure(text=str(constants.clicks_per_second))
+    print("CPS updated:", constants.clicks_per_second)
+
+
 def quit_application():
     constants.running = False
     root.destroy()
@@ -113,6 +119,28 @@ toggle_radio = CTkRadioButton(
     command=update_activation_mode
 )
 toggle_radio.place(relx=0.45, rely=0.3, anchor='w')
+
+cps_var = IntVar(value=constants.clicks_per_second)
+cps_var.trace("w", update_cps)
+
+cps_label = CTkLabel(root, text="CPS:")
+cps_label.place(relx=0.04, rely=0.4, anchor='w')
+
+cps_slider = CTkSlider(
+    root,
+    width=200,
+    from_=1,
+    to=100,
+    number_of_steps=100,
+    button_hover_color="#C850C0",
+    variable=cps_var,
+    command=update_cps
+)
+cps_slider.place(relx=0.15, rely=0.4, anchor='w')
+cps_display_label = CTkLabel(root, text=str(constants.clicks_per_second))
+cps_display_label.place(relx=0.65, rely=0.4, anchor='w')
+
+
 
 button_apply = CTkButton(
     root,
