@@ -117,6 +117,7 @@ cps_randomize_checkbox = CTkCheckBox(
     checkbox_width=20,
     checkbox_height=20,
     text="Randomize",
+    hover_color="#C850C0",
     variable=gui_variables.cps_randomize_var,
     command=update_cps_randomize
 )
@@ -130,6 +131,7 @@ jitter_click_movement_checkbox = CTkCheckBox(
     checkbox_width=20,
     checkbox_height=20,
     text="Jitter",
+    hover_color="#C850C0",
     variable=gui_variables.jitter_click_movement_var,
     command=update_jitter_click_movement
 )
