@@ -1,4 +1,5 @@
 import keyboard
+from PIL import Image, ImageTk
 from customtkinter import *
 
 from constants import constants
@@ -173,6 +174,12 @@ jitter_click_movement_checkbox = CTkCheckBox(
     command=update_jitter_click_movement
 )
 jitter_click_movement_checkbox.place(relx=0.48, rely=0.5, anchor='w')
+
+img = Image.open("assets/logo.png")
+img = img.resize((64, 64), Image.LANCZOS)
+logo_image = ImageTk.PhotoImage(img)
+logo_label = CTkLabel(root, image=logo_image, text="")
+logo_label.place(anchor='sw', relx=0.02, rely=0.98)
 
 
 button_apply = CTkButton(
