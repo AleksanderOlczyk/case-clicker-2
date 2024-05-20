@@ -7,9 +7,10 @@ from constants import constants
 def is_earn_menu_active():
     """Check if earn menu is active and update the global variable earn_menu_active."""
     while constants.running:
+        dollar_sign_path = 'assets/menu/dollar_sign.png'
         try:
             location = pyautogui.locateOnScreen(
-                'assets/menu/dollar_sign.png',
+                dollar_sign_path,
                 grayscale=True,
                 confidence=0.80
             )

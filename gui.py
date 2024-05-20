@@ -136,7 +136,7 @@ jitter_click_movement_checkbox = CTkCheckBox(
 jitter_click_movement_checkbox.place(relx=0.48, rely=0.5, anchor='w')
 gui_variables.jitter_click_movement_var = jitter_click_movement_var
 
-img = Image.open("assets/logo_3.png")
+img = Image.open("assets/logo.png")
 img = img.resize((64, 64), Image.LANCZOS)
 logo_image = CTkImage(img, size=(64, 64))
 logo_label = CTkLabel(root, image=logo_image, text="")
