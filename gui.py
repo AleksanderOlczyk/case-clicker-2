@@ -14,7 +14,6 @@ root.geometry("400x300")
 root.resizable(False, False)
 
 activation_key_var = StringVar(value=constants.activation_key)
-activation_key_var.trace("w", update_activation_key)
 activation_key_label = CTkLabel(root, text="Activation Key:")
 activation_key_label.place(relx=0.04, rely=0.1, anchor='w')
 activation_key_entry = CTkEntry(
@@ -28,7 +27,6 @@ activation_key_entry.place(relx=0.3, rely=0.1, anchor='w')
 gui_variables.activation_key_entry = activation_key_entry
 
 quit_key_var = StringVar(value=constants.quit_key)
-quit_key_var.trace("w", update_quit_key)
 quit_key_label = CTkLabel(root, text="Quit Key:")
 quit_key_label.place(relx=0.04, rely=0.2, anchor='w')
 quit_key_entry = CTkEntry(

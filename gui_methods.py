@@ -1,42 +1,38 @@
 from constants import constants
 from gui_variables import gui_variables
-from key_reader import KeyReader
+from gui_read_key import KeyReader
 
 
 # Fix error in the code below
 # In each of the functions below, is error with applying the new value to the gui_variable.py file
-
-def update_activation_key():
-    constants.activation_key = gui_variables.activation_key_var.get()
-    print("Activation key updated:", constants.activation_key)
-
-
-def update_quit_key():
-    constants.quit_key = gui_variables.quit_key_var.get()
-    print("Quit key updated:", constants.quit_key)
-
-
-def update_activation_mode():
-    constants.activation_mode = gui_variables.activation_mode_var.get()
-    print("Activation mode updated:", constants.activation_mode)
-
-
-def quit_key_change():
-    gui_variables.quit_key_entry.configure(text_color='white')
+def change_key(key_entry, key_var, set_constant_func):
+    key_entry.configure(state='normal', text_color='white')
     key_reader = KeyReader(gui_variables.root)
     gui_variables.root.wait_window(key_reader)
     if key_reader.key_pressed:
-        gui_variables.quit_key_var.set(key_reader.key_pressed)
-    gui_variables.quit_key_entry.configure(text_color='grey')
+        key_var.set(key_reader.key_pressed)
+        set_constant_func(key_reader.key_pressed)
+    key_entry.configure(text_color='grey')
 
 
 def activation_key_change():
-    gui_variables.activation_key_entry.configure(state='normal', text_color='white')
-    key_reader = KeyReader(gui_variables.root)
-    gui_variables.root.wait_window(key_reader)
-    if key_reader.key_pressed:
-        gui_variables.activation_key_var.set(key_reader.key_pressed)
-    gui_variables.activation_key_entry.configure(text_color='grey')
+    change_key(gui_variables.activation_key_entry, gui_variables.activation_key_var,
+               lambda key: setattr(constants, 'activation_key', key))
+
+
+def quit_key_change():
+    change_key(gui_variables.quit_key_entry, gui_variables.quit_key_var,
+               lambda key: setattr(constants, 'quit_key', key))
+
+
+# this is next function that needs to be fixed
+def update_activation_mode():
+    new_mode = gui_variables.activation_mode_var.get()
+    if new_mode != constants.activation_mode:
+        constants.activation_mode = new_mode
+        print("Activation mode updated:", constants.activation_mode)
+    else:
+        print("Activation mode not changed:", constants.activation_mode)
 
 
 def update_cps():
