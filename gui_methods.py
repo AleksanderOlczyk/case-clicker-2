@@ -3,7 +3,7 @@ from gui_variables import gui_variables
 from gui_read_key import KeyReader
 
 
-# Fix error in the code below
+# BUG: Fix error in the code below
 # In each of the functions below, is error with applying the new value to the gui_variable.py file
 def change_key(key_entry, key_var, set_constant_func):
     key_entry.configure(state='normal', text_color='white')

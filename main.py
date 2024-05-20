@@ -1,5 +1,4 @@
 import threading
-
 import keyboard
 
 from clicking import click

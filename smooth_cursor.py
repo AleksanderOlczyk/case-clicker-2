@@ -1,4 +1,3 @@
-import random
 import threading
 import time
 import math
@@ -9,10 +8,6 @@ from pynput.mouse import Controller
 class SmoothCursor:
     move_lock = threading.Lock()
     mouse_controller = Controller()
-
-    @staticmethod
-    def sinusoidal_interpolation(start, end, t):  # not bad but not smooth enough
-        return start + (end - start) * (1 - math.cos(t * math.pi)) / 2
 
     @staticmethod
     def exponential_interpolation(start, end, t, tau=0.1):

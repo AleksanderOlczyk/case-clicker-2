@@ -3,7 +3,7 @@ import sys
 import time
 import pyautogui
 
-from SmoothCursor import SmoothCursor
+from smooth_cursor import SmoothCursor
 from constants import constants
 
 
@@ -31,7 +31,8 @@ def detect_booster(booster_image):
                 except pyautogui.ImageNotFoundException:
                     booster_detected = False
 
-            if booster_previously_detected and not booster_detected and time.time() - last_detection_time > detection_delay:
+            if (booster_previously_detected and not booster_detected
+                    and time.time() - last_detection_time > detection_delay):
                 if not moving_to_booster and constants.running:
                     reset_cursor()
             booster_previously_detected = booster_detected
@@ -63,7 +64,11 @@ def detect_money_bag():
 def reset_cursor():
     """Reset cursor to the center of the dollar_sign.png image with a random offset of 200 pixels."""
     try:
-        center_pos = pyautogui.locateCenterOnScreen('assets/menu/dollar_sign.png', grayscale=True, confidence=0.8)
+        center_pos = pyautogui.locateCenterOnScreen(
+            'assets/menu/dollar_sign.png',
+            grayscale=True,
+            confidence=0.8
+        )
         if center_pos is not None:
             current_pos = pyautogui.position()
             if abs(current_pos[0] - center_pos[0]) > 250 or abs(current_pos[1] - center_pos[1]) > 250:

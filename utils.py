@@ -8,7 +8,11 @@ def is_earn_menu_active():
     """Check if earn menu is active and update the global variable earn_menu_active."""
     while constants.running:
         try:
-            location = pyautogui.locateOnScreen('assets/menu/dollar_sign.png', confidence=0.80)
+            location = pyautogui.locateOnScreen(
+                'assets/menu/dollar_sign.png',
+                grayscale=True,
+                confidence=0.80
+            )
             constants.earn_menu_active = location is not None
         except pyautogui.ImageNotFoundException:
             constants.earn_menu_active = False
