@@ -2,7 +2,7 @@ from customtkinter import CTkToplevel
 
 
 class KeyReader(CTkToplevel):
-    window_open = False
+    window_open: bool = False
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)

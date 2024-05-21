@@ -5,3 +5,4 @@ pynput
 opencv-python
 customtkinter
 pillow
+mypy

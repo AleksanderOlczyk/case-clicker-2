@@ -6,3 +6,4 @@ pip install pynput
 pip install opencv-python
 pip install customtkinter
 pip install pillow
+pip install mypy

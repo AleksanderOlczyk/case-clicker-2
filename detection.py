@@ -9,12 +9,12 @@ from constants import constants
 
 def detect_booster(booster_image):
     """Detect booster if mouse_click and earn_menu_active are True."""
-    booster_detected = False
-    booster_previously_detected = False
-    last_detection_time = 0
-    detection_delay = 1
-    moving_to_booster = False
-    booster_pos = None
+    booster_detected: bool = False
+    booster_previously_detected: bool = False
+    last_detection_time: int = 0
+    detection_delay: int = 1
+    moving_to_booster: bool = False
+    booster_pos: tuple = None
 
     while True:
         while constants.running:

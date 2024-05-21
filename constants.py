@@ -24,21 +24,21 @@ Class Constants:
 
 class Constants:
     # Game variables
-    quit_key = 'delete'
-    activation_key = 'p'
-    clicks_per_second = 20
-    jitter_click_movement = True
-    activation_mode = False  # True for hold, False for toggle
-    cps_randomize = True
+    quit_key: str = 'delete'
+    activation_key: str = 'p'
+    clicks_per_second: int = 20
+    jitter_click_movement: bool = True
+    activation_mode: bool = False  # True for hold, False for toggle
+    cps_randomize: bool = True
 
     # System variables
-    cps_randomization = 4
-    earn_menu_active = False
-    detect_boosters = False
-    mouse_moving = False
-    mouse_click = False
-    move_speed = 400
-    running = True
+    cps_randomization: int = 4
+    earn_menu_active: bool = False
+    detect_boosters: bool = False
+    mouse_moving: bool = False
+    mouse_click: bool = False
+    move_speed: int = 400
+    running: bool = True
 
 
 constants = Constants()
