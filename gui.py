@@ -142,13 +142,13 @@ logo_image = CTkImage(img, size=(64, 64))
 logo_label = CTkLabel(root, image=logo_image, text="")
 logo_label.place(anchor='sw', relx=0.02, rely=0.98)
 
-button_apply = CTkButton(
+button_Save = CTkButton(
     root,
-    text="Apply",
+    text="Save",
     corner_radius=64,
     hover_color="#C850C0"
 )
-button_apply.place(anchor='se', relx=0.98, rely=0.88)
+button_Save.place(anchor='se', relx=0.98, rely=0.88)
 
 button_quit = CTkButton(
     root,
