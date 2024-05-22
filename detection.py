@@ -18,7 +18,7 @@ def detect_booster(booster_image):
 
     while True:
         while constants.running:
-            if constants.mouse_click and constants.earn_menu_active:
+            if constants.mouse_click and constants.earn_menu_active and constants.detect_boosters:
                 try:
                     booster_pos = pyautogui.locateCenterOnScreen(booster_image, grayscale=True, confidence=0.8)
                     if booster_pos is not None:
