@@ -13,7 +13,13 @@ def click(clicks_per_second, cps_randomization):
         if constants.mouse_click and constants.earn_menu_active and not constants.mouse_moving:
             win32api.mouse_event(win32con.MOUSEEVENTF_LEFTDOWN, 0, 0)
             if constants.cps_randomize:
-                time.sleep(1 / (clicks_per_second + random.randint(-cps_randomization, cps_randomization)))
+                time.sleep(
+                    1 / (constants.clicks_per_second
+                         + random.randint(
+                                -constants.cps_randomization,
+                                constants.cps_randomization)
+                         )
+                )
             else:
                 time.sleep(1 / clicks_per_second)
             win32api.mouse_event(win32con.MOUSEEVENTF_LEFTUP, 0, 0)

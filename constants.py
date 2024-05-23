@@ -29,7 +29,7 @@ class Constants:
     clicks_per_second: int = 20
     jitter_click_movement: bool = True
     activation_mode: bool = False  # True for hold, False for toggle
-    detect_boosters: bool = False
+    detect_boosters: bool = True
     cps_randomize: bool = True
 
     # System variables
