@@ -7,3 +7,9 @@ pip install opencv-python
 pip install customtkinter
 pip install pillow
 pip install mypy
+pip install pandas
+pip install matplotlib
+pip install sklearn
+pip install pytesseract
+pip install Pillow
+pip install scikit-learn

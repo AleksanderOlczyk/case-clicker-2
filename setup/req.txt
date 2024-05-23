@@ -6,3 +6,9 @@ opencv-python
 customtkinter
 pillow
 mypy
+pandas
+matplotlib
+sklearn
+pytesseract
+Pillow
+scikit-learn
