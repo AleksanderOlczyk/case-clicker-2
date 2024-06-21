@@ -7,7 +7,7 @@ import win32con
 from constants import constants
 
 
-def click(clicks_per_second, cps_randomization):
+def click():
     """Simulate mouse click if mouse_click and earn_menu_active are True."""
     while constants.running:
         if constants.mouse_click and constants.earn_menu_active and not constants.mouse_moving:
@@ -21,7 +21,7 @@ def click(clicks_per_second, cps_randomization):
                          )
                 )
             else:
-                time.sleep(1 / clicks_per_second)
+                time.sleep(1 / constants.clicks_per_second)
             win32api.mouse_event(win32con.MOUSEEVENTF_LEFTUP, 0, 0)
             if constants.jitter_click_movement:
                 jitter_click_movement()
