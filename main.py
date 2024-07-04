@@ -15,7 +15,7 @@ def main():
 
     # Create threads
     is_earn_menu_active_thread = threading.Thread(target=is_earn_menu_active)
-    click_thread = threading.Thread(target=click, args=(constants.clicks_per_second, constants.cps_randomization))
+    click_thread = threading.Thread(target=click)
     money_bag_thread = threading.Thread(target=detect_money_bag)
     detect_2x_booster_thread = threading.Thread(target=detect_2x_booster)
     detect_4x_booster_thread = threading.Thread(target=detect_4x_booster)
