@@ -1,0 +1,14 @@
+keyboard
+pyautogui
+pywin32==224
+pynput
+opencv-python
+customtkinter
+pillow
+mypy
+pandas
+matplotlib
+sklearn
+pytesseract
+Pillow
+scikit-learn
