@@ -22,4 +22,4 @@ Projekt składa się z kilku plików:
 
 ## Jak używać
 
-Uruchom plik `main.py` i pozwól narzędziu automatycznie grać w Case Clicker 2 za Ciebie. Możesz zatrzymać i wznowić narzędzie, naciskając odpowiednie klawisze (domyślnie 'o' i 'p').
+Uruchom plik `main.py` i pozwól narzędziu automatycznie grać w Case Clicker 2 za Ciebie. Możesz zatrzymać i wznowić narzędzie, naciskając odpowiednie klawisze (domyślnie 'delete' i 'p').
