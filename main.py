@@ -1,3 +1,10 @@
+"""
+This module contains the main function to start and join threads.
+
+Functions:
+    main(): Main function to start and join threads.
+"""
+
 import threading
 import keyboard
 

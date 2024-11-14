@@ -1,3 +1,15 @@
+"""
+This module contains functions to detect various boosters and money bags in the game.
+
+Functions:
+    detect_booster(booster_image): Detects a booster on the screen using the provided image.
+    detect_2x_booster(): Detects the 2x booster on the screen.
+    detect_4x_booster(): Detects the 4x booster on the screen.
+    detect_7x_booster(): Detects the 7x booster on the screen.
+    detect_money_bag(): Detects the money bag on the screen.
+    reset_cursor(): Resets the cursor to the center of the dollar sign image with a random offset.
+"""
+
 import random
 import sys
 import time
