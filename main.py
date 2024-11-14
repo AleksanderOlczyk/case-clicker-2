@@ -16,6 +16,9 @@ from utils import is_earn_menu_active, on_press, on_release
 
 def main():
     """Main function to start and join threads."""
+    print(f"Press '{constants.activation_key}' to start/stop clicking.")
+    print(f"Press '{constants.quit_key}' to quit the program.")
+
     keyboard.on_press_key(constants.quit_key, on_press)
     keyboard.on_press_key(constants.activation_key, on_press)
     keyboard.on_release_key(constants.activation_key, on_release)
